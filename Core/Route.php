@@ -24,25 +24,26 @@ class Route
         return self::$routes['get'][$path] = $callback;
     }
 
+    /**
+     * @ run() method location is in the 'App\Core\Application' class
+     * @ run() method should call after calling global methods like % get, post,put,patch,delete %
+     * @ run() method call the reslove method
+     */
+
     //  resolve
-    public function resolve()
+    public static function resolve()
     {
         $path = self::$request->getPath();
         $method = self::$request->getMethod();
-        $callback = self::$routes[$method][$path] ;
-        echo "<pre>";
-         var_dump($callback);
-        echo "</pre>";
+        $callback = self::$routes[$method][$path] ?? false;
+
         if($callback == false)
         {
-            echo "Not Found";
+            echo "<h1>Not Found</h1>";
+            return;
         }
 
-        
         return call_user_func($callback, self::$request);
        
-       
-
-        
     }
 }

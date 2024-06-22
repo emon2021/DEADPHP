@@ -1,10 +1,9 @@
 <?php
 
 use App\Core\Route; 
-use App\Core\Application;
 
 // echo Route::get('/contact', 'some');
-$web = new Application();
+
  
 // echo $web->resolve();
 
@@ -18,4 +17,3 @@ Route::get('/contact',function(){
 });
 
 
-$web->run();
