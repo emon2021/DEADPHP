@@ -41,6 +41,16 @@ class Route
             Response::setStatusCode(404);
             return "<h1>404 | Not Found</h1>";
         }
+        if(is_string($callback))
+        {
+            self::view($callback);
+            return;
+        }
+
+
+
+
+
         /**
          * {{  
          * 
@@ -49,7 +59,13 @@ class Route
          * 
          *  }}
          */
+
         return call_user_func($callback);
        
+    }
+
+    public static function view($view)
+    {
+        return include_once __DIR__."/../views/$view.php";
     }
 }

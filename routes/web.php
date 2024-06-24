@@ -2,14 +2,16 @@
 
 use App\Core\Route; 
 
-
-
+/**
+ *  default route for welcome page
+ */
 Route::get('/',function(){
-    echo 'This is root path';
+    Route::view('welcome');
 });
-Route::get('/contact',function(){
-    echo 'This is contact path';
-});
+
+
+
+Route::get('/contact','contact');
 
 
 
