@@ -2,6 +2,7 @@
 
 use App\Core\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 
 /**
  *  default route for welcome page
@@ -12,8 +13,8 @@ Route::get('/',function(){
 
 
 
-Route::get('/contact','contact');
-Route::get('/contact1',[Controller::class,'contact']);
+Route::get('/index',[HomeController::class,'index']);
+Route::get('/contact',[Controller::class,'contact']);
 
 
 
