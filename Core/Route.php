@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Core;
-use App\Core\Request;
 
 class Route
 {
     public static Request $request;
-    public static Response $response;
     protected static array $routes = []; 
     public Application $app;
     /**
@@ -15,7 +13,6 @@ class Route
     public function __construct()
     {
         self::$request = new Request();
-        self::$response = new Response();
     }
 
 
@@ -41,7 +38,7 @@ class Route
 
         if($callback == false)
         {
-            self::$response->setStatusCode(404);
+            Response::setStatusCode(404);
             return "<h1>404 | Not Found</h1>";
         }
         /**
