@@ -14,7 +14,7 @@ require "../routes/web.php";
 
 
 
-$app->run();    //call the run method
+echo $app->run();    //call the run method
 
 
 

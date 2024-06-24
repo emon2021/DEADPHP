@@ -19,6 +19,6 @@ class Application
 
     public function run()
     {
-        self::$route->resolve();
+        return self::$route->resolve();
     }
 }

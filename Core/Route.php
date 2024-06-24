@@ -6,19 +6,8 @@ use App\Core\Request;
 class Route
 {
     public static Request $request;
+    public static Response $response;
     protected static array $routes = []; 
-    /**
-     *  protected static array $routes = [
-     *      'get' => [
-     *          'path' => '/contact',
-     *          'callback' => '[App\Controllers\ContactController, index]',
-     *      ],
-     *      'post' => [
-     *          'path' => '/users',
-     *          'callback' => '[App\Controllers\UserController, store]',
-     *      ],
-     *  ];
-     */
     public Application $app;
     /**
      * Class constructor.
@@ -26,6 +15,7 @@ class Route
     public function __construct()
     {
         self::$request = new Request();
+        self::$response = new Response();
     }
 
 
@@ -33,6 +23,7 @@ class Route
     {
         return self::$routes['get'][$path] = $callback;
     }
+
 
     /**
      * @ run() method location is in the 'App\Core\Application' class
@@ -45,12 +36,13 @@ class Route
     {
         $path = self::$request->getPath();
         $method = self::$request->getMethod();
+        //  getting the callback from the routes array
         $callback = self::$routes[$method][$path] ?? false; // $routes = [$method][$path]
 
         if($callback == false)
         {
-            echo "<h1>Not Found</h1>";
-            return;
+            self::$response->setStatusCode(404);
+            return "<h1>404 | Not Found</h1>";
         }
         /**
          * {{  

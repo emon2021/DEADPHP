@@ -2,11 +2,6 @@
 
 use App\Core\Route; 
 
-// echo Route::get('/contact', 'some');
-
- 
-// echo $web->resolve();
-
 
 
 Route::get('/',function(){
@@ -16,12 +11,5 @@ Route::get('/contact',function(){
     echo 'This is contact path';
 });
 
-/**
- * 
- * 
- * $routes['get']['path'] = function(){
- *     echo 'This is contact path';
- * };
- * 
- */
+
 
