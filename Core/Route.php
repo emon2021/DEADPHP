@@ -6,7 +6,19 @@ use App\Core\Request;
 class Route
 {
     public static Request $request;
-    protected static array $routes = [];
+    protected static array $routes = []; 
+    /**
+     *  protected static array $routes = [
+     *      'get' => [
+     *          'path' => '/contact',
+     *          'callback' => '[App\Controllers\ContactController, index]',
+     *      ],
+     *      'post' => [
+     *          'path' => '/users',
+     *          'callback' => '[App\Controllers\UserController, store]',
+     *      ],
+     *  ];
+     */
     public Application $app;
     /**
      * Class constructor.
@@ -15,8 +27,6 @@ class Route
     {
         self::$request = new Request();
     }
-
-
 
 
     public static function get($path, $callback)
@@ -35,15 +45,22 @@ class Route
     {
         $path = self::$request->getPath();
         $method = self::$request->getMethod();
-        $callback = self::$routes[$method][$path] ?? false;
+        $callback = self::$routes[$method][$path] ?? false; // $routes = [$method][$path]
 
         if($callback == false)
         {
             echo "<h1>Not Found</h1>";
             return;
         }
-
-        return call_user_func($callback, self::$request);
+        /**
+         * {{  
+         * 
+         *  $callback = $routes[$method][$path] = $callback which is from ->
+         *  get,post,put,patch,delete method...
+         * 
+         *  }}
+         */
+        return call_user_func($callback);
        
     }
 }
