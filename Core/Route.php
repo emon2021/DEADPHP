@@ -46,7 +46,10 @@ class Route
             self::view($callback);
             return;
         }
-
+        if(is_array($callback))
+        {
+            $callback[0] = new $callback[0]();
+        }
 
 
 
